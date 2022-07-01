@@ -11,7 +11,8 @@ def get_location(url):
   soup = BeautifulSoup(response.text, 'lxml')
 
   ip = soup.find('div', class_='ip').text.strip()
-  print(ip)
+  location = soup.find('div', class_='value-country').text.strip()
+  print(f'IP: {ip} ___ Loc: {location}')
 
 def main():
   get_location(url='https://2ip.ru')
