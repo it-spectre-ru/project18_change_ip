@@ -1,13 +1,15 @@
 import requests
 from bs4 import BeautifulSoup
+from proxy_auth import proxies
 
 
 headers = {
   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36"
 }
 
+
 def get_location(url):
-  response = requests.get(url=url, headers=headers)
+  response = requests.get(url=url, headers=headers, proxies=proxies)
   soup = BeautifulSoup(response.text, 'lxml')
 
   ip = soup.find('div', class_='ip').text.strip()
